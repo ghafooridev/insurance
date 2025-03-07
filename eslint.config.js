@@ -46,8 +46,14 @@ export default tseslint.config(
       'import/resolver': {
         typescript: {
           project: './tsconfig.json'
-        }
-      }
+        },
+        alias: {
+          map: [
+            ['@', './src'],
+          ],
+          extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
+        },
+      },
     },
     rules: {
       // set of custom rules
@@ -58,3 +64,4 @@ export default tseslint.config(
     }
   }
 )
+
