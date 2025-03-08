@@ -60,7 +60,8 @@ export default tseslint.config(
       'no-console': 'warn',
       'react/button-has-type': 'error',
       'react/react-in-jsx-scope': ['off'],
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }]
+      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      "@typescript-eslint/no-explicit-any": 'warn'
     }
   }
 )

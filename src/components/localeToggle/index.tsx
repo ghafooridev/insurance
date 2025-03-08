@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-function App() {
+function LocaleToggle() {
   const {
     i18n: { changeLanguage, language, dir }
   } = useTranslation()
@@ -22,4 +22,4 @@ function App() {
   )
 }
 
-export default App
+export default LocaleToggle

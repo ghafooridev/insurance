@@ -1,8 +1,13 @@
-import { useTranslation } from 'react-i18next'
+import ContentWrapper from './components/contentWrapper'
+import InsuranceView from './modules/insurance/views'
 function App() {
-  const { t } = useTranslation()
-
-  return <div>{t('hello')}</div>
+  return (
+    <div>
+      <ContentWrapper>
+        <InsuranceView />
+      </ContentWrapper>
+    </div>
+  )
 }
 
 export default App
