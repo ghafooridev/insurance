@@ -6,26 +6,29 @@ export default function useQuery<T>(url: string, lazy = false) {
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
-  const handleSuccess = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true)
+    setData(null) // Clear old data before fetching
+
     try {
       const res: AxiosResponse<T> = await Axios.get<T>(url)
       setData(res.data)
-      setError(null) // Clear previous errors if successful
+      setError(null) // Clear errors if successful
     } catch (error: unknown) {
       if (error instanceof Error) setError(error.message)
     } finally {
       setLoading(false)
     }
-  }
-
-  const runQuery = useCallback(() => {
-    handleSuccess()
-  }, [url, setData, setError])
+  }, [url]) // Only depends on `url`
 
   useEffect(() => {
-    if (!lazy) runQuery()
-  }, [runQuery])
+    if (!lazy) fetchData() // Fetch automatically if `lazy` is false
+  }, [fetchData, lazy])
 
-  return { data, loading, error, refetch: runQuery }
+  return {
+    data,
+    loading,
+    error,
+    refetch: fetchData
+  }
 }

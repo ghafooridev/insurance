@@ -6,17 +6,17 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
-const PORT = 4000 // Change if needed
+const PORT = 5050
 
 app.use(cors())
 
 app.use(
   '/api',
   createProxyMiddleware({
-    target: process.env.API_URL, // Replace with your actual API
+    target: process.env.API_URL,
     changeOrigin: true,
     secure: false,
-    pathRewrite: { '^/api': '' } // Remove "/api" prefix
+    pathRewrite: { '^/api': '' }
   })
 )
 

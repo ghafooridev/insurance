@@ -1,5 +1,5 @@
-import ContentWrapper from './components/contentWrapper'
-import InsuranceView from './modules/insurance/views'
+import ContentWrapper from './layout'
+import InsuranceView from './modules/insurance/views/listView'
 function App() {
   return (
     <div>

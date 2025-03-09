@@ -1,23 +1,32 @@
 import { useTranslation } from 'react-i18next'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 
 function LocaleToggle() {
   const {
     i18n: { changeLanguage, language, dir }
   } = useTranslation()
 
-  const onChangeLocale = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const { value } = e.target
+  const onChangeLocale = (value: string) => {
     changeLanguage(value)
   }
 
   return (
     <div dir={dir()}>
-      <div className="header">
-        <select onChange={onChangeLocale} value={language}>
-          <option value="en">🇺🇸 English</option>
-          <option value="fa">🇮🇷 Persian</option>
-        </select>
-      </div>
+      <Select onValueChange={onChangeLocale} value={language}>
+        <SelectTrigger className="w-[180px] dark:text-black text-white">
+          <SelectValue placeholder="Select Language" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="en">🇺🇸 English</SelectItem>
+          <SelectItem value="fa">🇮🇷 Persian</SelectItem>
+        </SelectContent>
+      </Select>
     </div>
   )
 }

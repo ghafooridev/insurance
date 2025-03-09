@@ -68,7 +68,7 @@ export default function DataTable({ columns, data, loading }: DataTableProps) {
   }, [columns])
 
   return (
-    <div className="space-y-6 p-4 bg-white rounded-lg shadow-lg w-full">
+    <div className="space-y-6 p-4 mt-10 shadow-lg w-full ">
       {/* Search & Column Selection */}
       <div className="flex justify-between items-center">
         <Input

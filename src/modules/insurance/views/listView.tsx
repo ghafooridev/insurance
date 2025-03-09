@@ -1,6 +1,6 @@
 import useQuery from '@/hooks/useQuery'
 import { API_URL } from '@/modules/insurance/constants'
-import DataTable from './dataTable'
+import DataTable from '../components/dataTable'
 
 function InsuranceList() {
   const { data, loading } = useQuery<{ data: any; columns: any }>(API_URL.getApplications)

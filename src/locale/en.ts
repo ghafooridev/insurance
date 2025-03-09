@@ -1,3 +1,3 @@
 export const en = {
-  hello: 'Hello'
+  brandTitle: 'Smart Insurance Application'
 }

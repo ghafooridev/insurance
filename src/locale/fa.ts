@@ -1,3 +1,3 @@
 export const fa = {
-  hello: 'سلام'
+  brandTitle: 'پورتال هوشمند بیمه'
 }
