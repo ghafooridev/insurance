@@ -8,21 +8,21 @@ export default function useQuery<T>(url: string, lazy = false) {
 
   const fetchData = useCallback(async () => {
     setLoading(true)
-    setData(null) // Clear old data before fetching
+    setData(null)
 
     try {
       const res: AxiosResponse<T> = await Axios.get<T>(url)
       setData(res.data)
-      setError(null) // Clear errors if successful
+      setError(null)
     } catch (error: unknown) {
       if (error instanceof Error) setError(error.message)
     } finally {
       setLoading(false)
     }
-  }, [url]) // Only depends on `url`
+  }, [url])
 
   useEffect(() => {
-    if (!lazy) fetchData() // Fetch automatically if `lazy` is false
+    if (!lazy) fetchData()
   }, [fetchData, lazy])
 
   return {

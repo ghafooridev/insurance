@@ -11,38 +11,27 @@ import prettier from 'eslint-plugin-prettier/recommended'
 export default tseslint.config(
   { ignores: ['dist'] },
   {
-    // specify the formats on which to apply the rules below
     files: ['**/*.{ts,tsx}'],
-    // use predefined configs in installed eslint plugins
     extends: [
-      // js
       js.configs.recommended,
-      // ts
       ...tseslint.configs.recommended,
-      // react
       react.configs.flat.recommended,
-      // import
       importPlugin.flatConfigs.recommended,
-      // a11y (accessibility
       jsxA11y.flatConfigs.recommended,
-      // prettier
       prettier
     ],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser
     },
-    // specify used plugins
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh
     },
     settings: {
-      // for eslint-plugin-react to auto detect react version
       react: {
         version: 'detect'
       },
-      // for eslint-plugin-import to use import alias
       'import/resolver': {
         typescript: {
           project: './tsconfig.json'
@@ -56,7 +45,6 @@ export default tseslint.config(
       },
     },
     rules: {
-      // set of custom rules
       'no-console': 'warn',
       'react/button-has-type': 'error',
       'react/react-in-jsx-scope': ['off'],

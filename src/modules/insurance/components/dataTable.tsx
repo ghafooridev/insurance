@@ -17,6 +17,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem
 } from '@/components/ui/dropdown-menu'
+import { useTranslation } from 'react-i18next'
 
 interface TableData {
   id: string
@@ -30,13 +31,13 @@ interface DataTableProps {
 }
 const ROW_PER_PAGE = 5
 export default function DataTable({ columns, data, loading }: DataTableProps) {
+  const { t } = useTranslation()
   const [search, setSearch] = useState('')
   const [sortColumn, setSortColumn] = useState<string | null>(null)
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc')
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedColumns, setSelectedColumns] = useState<string[]>(columns)
 
-  // Search & Filter Data
   const filteredData = useMemo(() => {
     return data?.filter((row) =>
       selectedColumns?.some((col) =>
@@ -45,7 +46,6 @@ export default function DataTable({ columns, data, loading }: DataTableProps) {
     )
   }, [search, data, selectedColumns])
 
-  // Sort Data
   const sortedData = useMemo(() => {
     if (!sortColumn) return filteredData
     return [...filteredData].sort((a, b) => {
@@ -55,7 +55,6 @@ export default function DataTable({ columns, data, loading }: DataTableProps) {
     })
   }, [sortColumn, sortOrder, filteredData])
 
-  // Paginate Data
   const totalRows = sortedData?.length
   const totalPages = Math.ceil(totalRows / ROW_PER_PAGE)
   const paginatedData = sortedData?.slice(
@@ -69,10 +68,9 @@ export default function DataTable({ columns, data, loading }: DataTableProps) {
 
   return (
     <div className="space-y-6 p-4 mt-10 shadow-lg w-full ">
-      {/* Search & Column Selection */}
       <div className="flex justify-between items-center">
         <Input
-          placeholder="Search..."
+          placeholder={t('search')}
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="w-1/3 p-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
@@ -80,7 +78,7 @@ export default function DataTable({ columns, data, loading }: DataTableProps) {
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button>Select Columns</Button>
+            <Button>{t('selectColumn')}</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             {columns?.map((col) => (
@@ -104,8 +102,6 @@ export default function DataTable({ columns, data, loading }: DataTableProps) {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-
-      {/* Table */}
       <div className="overflow-x-auto border rounded-lg">
         <Table>
           <TableHeader>
@@ -142,7 +138,7 @@ export default function DataTable({ columns, data, loading }: DataTableProps) {
             ) : paginatedData?.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={selectedColumns?.length} className="text-center">
-                  No data available
+                  {t('noData')}
                 </TableCell>
               </TableRow>
             ) : (
@@ -158,22 +154,24 @@ export default function DataTable({ columns, data, loading }: DataTableProps) {
         </Table>
       </div>
 
-      {/* Pagination & Rows Per Page */}
       <div className="flex justify-between items-center">
-        <div>{filteredData?.length} rows found</div>
+        <div>
+          {filteredData?.length}
+          {t('rowFound')}
+        </div>
         <div className="flex items-center space-x-2">
           <Button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
           >
-            Prev
+            {t('previous')}
           </Button>
 
           <Button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
           >
-            Next
+            {t('next')}
           </Button>
         </div>
       </div>

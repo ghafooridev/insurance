@@ -13,7 +13,7 @@
     "format": "npx prettier --write $(git diff --name-only --diff-filter=ACMRTUXB HEAD)",
     "preview": "vite preview",
     "prepare": "husky",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.1.4",

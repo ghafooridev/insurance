@@ -15,8 +15,8 @@ const Header = () => {
   }
 
   const getButtonTitle = () => {
-    if (pathname === '/form') return 'Back To List'
-    return 'Add Application'
+    if (pathname === '/form') return t('back')
+    return t('addApplication')
   }
   return (
     <div className="h-16 bg-primary dark:bg-white w-full flex justify-between items-center px-4">

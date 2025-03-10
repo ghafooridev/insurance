@@ -18,8 +18,10 @@ import CheckBox from '@/components/form/checkbox'
 import RadioButton from '@/components/form/radioButton'
 import { API_URL } from '../constants'
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 
 function InsuranceForm({ form }: { form: InsuranceFormInterface }) {
+  const { t } = useTranslation()
   const { register, handleSubmit, watch } = useForm()
   const { mutate, loading } = useMutation(API_URL.submitForm, 'post')
 
@@ -113,7 +115,7 @@ function InsuranceForm({ form }: { form: InsuranceFormInterface }) {
           {form.fields?.map((field) => renderField(field))}
         </CardContent>
         <CardFooter>
-          <Button type="submit">{loading ? 'Submitting...' : 'Submit Application'}</Button>
+          <Button type="submit">{loading ? 'Submitting...' : t('submitApplication')}</Button>
         </CardFooter>
       </Card>
     </form>

@@ -1,20 +1,3 @@
-// import { ThemeContext } from '@/providers/theme'
-// import { use } from 'react'
-// import { Switch } from '@/components/ui/switch'
-
-// const ThemeToggle = () => {
-//   const { toggleTheme, theme } = use(ThemeContext)
-
-//   return (
-//     <div className="flex items-center space-x-2">
-//       <Switch checked={theme === 'dark'} onCheckedChange={toggleTheme} />
-//       <span>{theme === 'light' ? 'Dark' : 'Light'} Mode</span>
-//     </div>
-//   )
-// }
-
-// export default ThemeToggle
-
 import { Moon, Sun } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
